@@ -1,0 +1,54 @@
+# Copyright (c) Jiaqi Liu.
+---
+name: Documentation CI/CD
+
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+#  test:
+#    uses: ./.github/workflows/test.yml
+#    secrets: inherit
+
+  deploy-documentation:
+    name: Deploy Documentation to GitHub Pages
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Before install
+        run: |
+          sudo apt-get update
+          sudo apt-get install graphviz graphviz-dev
+          sudo apt-get install libspatialindex-dev
+
+      - name: Install packages
+        run: |
+          pip install --upgrade pip wheel setuptools
+          pip install -r requirements/default.txt -r requirements/test.txt
+          pip install -r requirements/extra.txt
+          pip install -r requirements/example.txt
+          pip install -U -r requirements/doc.txt
+          pip install .
+          pip list
+
+      - name: Build docs
+        run: |
+          export DISPLAY=:99
+          make -C doc/ html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: doc/build/html
+          user_name: QubitPi
+          user_email: jack20191124@proton.me
