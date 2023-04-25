@@ -130,7 +130,7 @@ doctest_global_setup = "import networkx as nx"
 # Options for HTML output
 # -----------------------
 
-html_baseurl = "https://networkx.org/documentation/stable/"
+html_baseurl = "https://QubitPi.github.io/networkx/"
 html_theme = "pydata_sphinx_theme"
 html_theme_options = {
     "collapse_navigation": True,
