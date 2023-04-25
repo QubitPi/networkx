@@ -2,6 +2,7 @@
 Please run black to format your code.
 See https://networkx.org/documentation/latest/developer/contribute.html for details.
 -->
+
 ## Changelog
 
 ### Added
@@ -18,6 +19,6 @@ See https://networkx.org/documentation/latest/developer/contribute.html for deta
 
 ## Checklist
 
-* [ ] Test
-* [ ] Self-review
-* [ ] Documentation
+- [ ] Test
+- [ ] Self-review
+- [ ] Documentation
