@@ -2,20 +2,20 @@
 ---
 name: Documentation CI/CD
 
-'on':
+on:
   pull_request:
+    branches: [master]
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
-#  test:
-#    uses: ./.github/workflows/test.yml
-#    secrets: inherit
+  test:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
 
   deploy-documentation:
     name: Deploy Documentation to GitHub Pages
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
