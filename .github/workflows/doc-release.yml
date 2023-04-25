@@ -1,6 +1,6 @@
 # Copyright (c) Jiaqi Liu.
 ---
-name: Documentation CI/CD
+name: Documentation Release
 
 on:
   pull_request:
@@ -45,10 +45,10 @@ jobs:
           export DISPLAY=:99
           make -C doc/ html
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy docs to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: doc/build/html
           user_name: QubitPi
-          user_email: jack20191124@proton.me
+          user_email: jack20220723@gmail.com
